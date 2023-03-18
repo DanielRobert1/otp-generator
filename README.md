@@ -2,6 +2,8 @@
 
 [![Unit Tests](https://github.com/DanielRobert1/otp-generator/actions/workflows/run-tests.yml/badge.svg)](https://github.com/DanielRobert1/otp-generator/actions/workflows/run-tests.yml)
 
+[![CodeFactor](https://www.codefactor.io/repository/github/danielrobert1/otp-generator/badge)](https://www.codefactor.io/repository/github/danielrobert1/otp-generator)
+
 ## Installation
 
 You can install the package via composer:
