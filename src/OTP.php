@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @see \DanielRobert\Otp\OTP
  */
-class OTP extends Facade
+class Otp extends Facade
 {
     protected static function getFacadeAccessor()
     {
