@@ -1,4 +1,4 @@
-# OTP Generator and Validator for Laravel Applications
+# Otp Generator and Validator for Laravel Applications
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/danielrobert/otp-generator?style=for-the-badge)](https://packagist.org/packages/danielrobert1otp-generator)
 [![Quality Score](https://img.shields.io/scrutinizer/quality/g/danielrobert1/otp-generator/master?style=for-the-badge)](https://scrutinizer-ci.com/g/danielrobert1/otp-generator/)
@@ -33,20 +33,20 @@ php artisan vendor:publish --provider="DanielRobert\Otp\OtpServiceProvider" --ta
 ## Usage
 
 ```php
-use DanielRobert\Otp\OTP;
+use DanielRobert\Otp\Otp;
 .
 .
-$otp =  OTP::generate($identifier);
+$otp =  Otp::generate($identifier);
 .
-$verify = OTP::validate($identifier, $otp->token);
+$verify = Otp::validate($identifier, $otp->token);
 // example response
 {
   "status": true
-  "message": "OTP is valid"
+  "message": "Otp is valid"
 }
 
 // to get an expiredAt time
-$expires = OTP::expiredAt($identifier);
+$expires = Otp::expiredAt($identifier);
 
 // example response 
 {
@@ -64,17 +64,17 @@ You have control to update the setting at otp-generator.php config file but you 
 ## Advance Usage
 
 ```php
-use DanielRobert\Otp\OTP;
+use DanielRobert\Otp\Otp;
 .
 .
-$otp =  OTP::setValidity(30)  // otp validity time in mins
+$otp =  Otp::setValidity(30)  // otp validity time in mins
       ->setLength(4)  // Lenght of the generated otp
       ->setMaximumOtpsAllowed(10) // Number of times allowed to regenerate otps
       ->setOnlyDigits(false)  // generated otp contains mixed characters ex:ad2312
-      ->setUseSameToken(true) // if you re-generate OTP, you will get same token
+      ->setUseSameToken(true) // if you re-generate Otp, you will get same token
       ->generate($identifier);
 .
-$verify = OTP::setAllowedAttempts(10) // number of times they can allow to attempt with wrong token
+$verify = Otp::setAllowedAttempts(10) // number of times they can allow to attempt with wrong token
     ->validate($identifier, $otp->token);
 
 ```

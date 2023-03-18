@@ -1,6 +1,18 @@
 <?php
 
 return [
+    /*
+    |--------------------------------------------------------------------------
+    | Otp Storage Driver
+    |--------------------------------------------------------------------------
+    |
+    | This configuration options determines the storage driver that will
+    | be used to store Otps. In addition, you may set any
+    | custom options as needed by the particular driver you choose.
+    |
+    */    
+
+    'connection' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -10,7 +22,9 @@ return [
     | By default = 10 minutes
     |
     */
+
     'validity' => env('OTP_VALIDITY_TIME', 10),
+    
     /*
     |--------------------------------------------------------------------------
     |  Length of the generated OTP
@@ -19,6 +33,7 @@ return [
     | By default = 6 digits used
     |
     */
+
     'length' => env('OPT_LENGTH', 6),
 
     /*
@@ -29,6 +44,7 @@ return [
     | This filed will be used when validating the generated OTP token.
     |
     */
+
     'allowedAttempts' => env('OTP_ALLOWED_ATTEMPTS', 5),
 
 
@@ -40,6 +56,7 @@ return [
     | if true the geneated OTP contains only digits. ex : 654321
     | f false the geneated OTP contains only alpanumeric. ex : 21ab43
     */
+
     'onlyDigits' => true,
 
     /*
@@ -50,6 +67,7 @@ return [
     | if true the the second time onwards geneated OTPs same a the first one (Only OTP validation time)
     | if false each time unique OPT will be generated
     */
+
     'useSameToken' => false,
 
     /*
@@ -69,5 +87,6 @@ return [
     | Once the limit reached, the end-user can't able to generate OPT until the OTP deleteOldOtps time is over.
     |
     */
+
     'maximumOtpsAllowed' => env('MAXIMUM_OTPS_ALLOWED', 5),
 ];

@@ -3,9 +3,11 @@ namespace DanielRobert\Otp\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class OTP extends Model
+class OtpModel extends Model
 {
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -67,5 +69,15 @@ class OTP extends Model
     public function expiredAt() :object
     {
         return $this->generated_at->addMinutes($this->validity);
+    }
+
+    /**
+     * Get the current connection name for the model.
+     *
+     * @return string
+     */
+    public function getConnectionName()
+    {
+        return config('otp.storage.database.connection');
     }
 }

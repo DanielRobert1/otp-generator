@@ -4,7 +4,7 @@ namespace DanielRobert\Otp\Tests;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use DanielRobert\Otp\OTP;
+use DanielRobert\Otp\Otp;
 
 class OtpGenerationTest extends TestCase
 {
@@ -14,8 +14,8 @@ class OtpGenerationTest extends TestCase
     public function can_able_to_generate_and_validate_the_otp()
     {
         $identifier = Str::random(12);
-        $otp = OTP::generate($identifier);
-        $validator = OTP::validate($identifier, $otp->token);
+        $otp = Otp::generate($identifier);
+        $validator = Otp::validate($identifier, $otp->token);
         $this->assertEquals($validator->status, true);
     }
 
@@ -23,9 +23,9 @@ class OtpGenerationTest extends TestCase
     public function cant_able_to_verify_the_opt_once_get_expired()
     {
         $identifier = Str::random(12);
-        $otp = OTP::generate($identifier);
+        $otp = Otp::generate($identifier);
         $this->travel(config('otp-generator.validity') + 1)->minutes();
-        $validator = OTP::validate($identifier, $otp->token);
+        $validator = Otp::validate($identifier, $otp->token);
         $this->assertEquals($validator->status, false);
     }
 
@@ -33,9 +33,9 @@ class OtpGenerationTest extends TestCase
     public function can_able_to_regenerate_and_validate_the_otp()
     {
         $identifier = Str::random(12);
-        OTP::generate($identifier);
-        $secondTime = OTP::generate($identifier);
-        $validator = OTP::validate($identifier, $secondTime->token);
+        Otp::generate($identifier);
+        $secondTime = Otp::generate($identifier);
+        $validator = Otp::validate($identifier, $secondTime->token);
         $this->assertEquals($validator->status, true);
         $this->assertDatabaseCount('otps', 1);
     }
@@ -47,9 +47,9 @@ class OtpGenerationTest extends TestCase
         $limit = config('otp-generator.maximumOtpsAllowed');
 
         for ($i = 0; $i < $limit ; $i++) {
-            OTP::generate($identifier);
+            Otp::generate($identifier);
         }
-        $otp = OTP::generate($identifier);
+        $otp = Otp::generate($identifier);
 
         $this->assertEquals($otp->status, false);
     }
@@ -58,12 +58,12 @@ class OtpGenerationTest extends TestCase
     public function the_otps_will_be_deleted_after_spceifed_amount_of_time()
     {
         $identifier = Str::random(12);
-        $otp = OTP::generate($identifier);
+        $otp = Otp::generate($identifier);
         $this->travel(config('otp-generator.deleteOldOtps'))->minutes();
-        $validator = OTP::validate($identifier, $otp->token);
+        $validator = Otp::validate($identifier, $otp->token);
         $this->assertEquals($validator->status, false);
         $this->assertDatabaseCount('otps', 1);
-        OTP::generate(Str::random(13));
+        Otp::generate(Str::random(13));
         $this->assertDatabaseCount('otps', 1);
         $this->travelBack();
     }
@@ -72,12 +72,12 @@ class OtpGenerationTest extends TestCase
     public function cant_able_to_verify_the_otp_once_reach_the_maximum_allowedAttempts()
     {
         $identifier = Str::random(12);
-        $otp = OTP::generate($identifier);
+        $otp = Otp::generate($identifier);
         $allowedAttempts = config('otp-generator.allowedAttempts');
         for ($i = 0; $i < $allowedAttempts ; $i++) {
-            OTP::validate($identifier, 'wrongToken');
+            Otp::validate($identifier, 'wrongToken');
         }
-        $validator = OTP::validate($identifier, $otp->token);
+        $validator = Otp::validate($identifier, $otp->token);
         $this->assertEquals($validator->status, false);
     }
 
@@ -85,7 +85,7 @@ class OtpGenerationTest extends TestCase
     public function can_able_set_custom_validity_time_and_maximum_otps_allowed_numbers()
     {
         $identifier = Str::random(12);
-        OTP::setValidity(30)
+        Otp::setValidity(30)
             ->generate($identifier);
 
         $this->assertDatabaseHas('otps', [
@@ -94,7 +94,7 @@ class OtpGenerationTest extends TestCase
         $identifier = Str::random(11);
         $maximumOtpsAllowed = 10;
         for ($i = 0; $i < $maximumOtpsAllowed  ; $i++) {
-            $otp = OTP::setMaximumOtpsAllowed($maximumOtpsAllowed)
+            $otp = Otp::setMaximumOtpsAllowed($maximumOtpsAllowed)
                 ->generate($identifier);
             $this->assertEquals($otp->status, true);
         }
@@ -104,13 +104,13 @@ class OtpGenerationTest extends TestCase
     public function can_able_set_custom_number_of_allowed_attempts()
     {
         $identifier = Str::random(12);
-        $otp = OTP::generate($identifier);
+        $otp = Otp::generate($identifier);
         $allowedAttempts = 10;
         for ($i = 0; $i < $allowedAttempts - 1 ; $i++) {
-            OTP::setAllowedAttempts($allowedAttempts)
+            Otp::setAllowedAttempts($allowedAttempts)
                 ->validate($identifier, 'wrongToken');
         }
-        $validator = OTP::validate($identifier, $otp->token);
+        $validator = Otp::validate($identifier, $otp->token);
         $this->assertEquals($validator->status, true);
     }
 
@@ -118,7 +118,7 @@ class OtpGenerationTest extends TestCase
     public function can_able_to_set_custom_otp_length()
     {
         $identifier = Str::random(12);
-        $otp = OTP::setLength(8)
+        $otp = Otp::setLength(8)
                 ->generate($identifier);
         $this->assertEquals(strlen($otp->token), 8);
     }
@@ -127,8 +127,8 @@ class OtpGenerationTest extends TestCase
     public function can_able_get_same_token_on_second_time_onwards()
     {
         $identifier = Str::random(12);
-        $otp1 = OTP::generate($identifier);
-        $otp2 = OTP::setUseSameToken(true)->generate($identifier);
+        $otp1 = Otp::generate($identifier);
+        $otp2 = Otp::setUseSameToken(true)->generate($identifier);
 
         $this->assertEquals($otp1->token, $otp2->token);
     }
@@ -137,8 +137,8 @@ class OtpGenerationTest extends TestCase
     public function can_able_to_get_expired_at_time()
     {
         $identifier = Str::random(12);
-        OTP::generate($identifier);
-        $expires = OTP::expiredAt($identifier);
+        Otp::generate($identifier);
+        $expires = Otp::expiredAt($identifier);
         $this->assertEquals(9, $expires->expired_at->diffInMinutes());
     }
 }

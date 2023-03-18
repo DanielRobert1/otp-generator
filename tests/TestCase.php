@@ -3,7 +3,7 @@
 namespace DanielRobert\Otp\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use DanielRobert\Otp\OTPGeneratorServiceProvider;
+use DanielRobert\Otp\OtpGeneratorServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 
@@ -23,7 +23,7 @@ abstract class TestCase extends BaseTestCase
     protected function getPackageProviders($app): array
     {
         return [
-            OTPGeneratorServiceProvider::class
+            OtpGeneratorServiceProvider::class
         ];
     }
 
@@ -35,8 +35,5 @@ abstract class TestCase extends BaseTestCase
             'database' => ':memory:',
             'prefix' => '',
         ]);
-
-        include_once __DIR__.'/../database/migrations/create_otps_table.php.stub';
-        (new \CreateOtpsTable())->up();
     }
 }

@@ -3,13 +3,13 @@
 namespace DanielRobert\Otp;
 
 use Carbon\Carbon;
-use DanielRobert\Otp\Models\OTP as OtpModel;
+use DanielRobert\Otp\Models\OtpModel;
 use Illuminate\Support\Str;
 
 
-class OTPGenerator {
+class OtpGenerator {
     /**
-     * Length of the generated OTP
+     * Length of the generated Otp
      *
      * @var int
      */
@@ -113,7 +113,7 @@ class OTPGenerator {
             if ($otp->no_times_generated == $this->maximumOtpsAllowed) {
                 return (object) [
                     'status' => false,
-                    'message' => "Reached the maximum times to generate OTP",
+                    'message' => "Reached the maximum times to generate Otp",
                 ];
             }
 
@@ -132,7 +132,7 @@ class OTPGenerator {
         return (object) [
             'status' => true,
             'token' => $otp->token,
-            'message' => "OTP generated",
+            'message' => "Otp generated",
         ];
     }
 
@@ -143,14 +143,14 @@ class OTPGenerator {
         if (! $otp) {
             return (object) [
                 'status' => false,
-                'message' => 'OTP does not exists, Please generate new OTP',
+                'message' => 'Otp does not exists, Please generate new Otp',
             ];
         }
 
         if ($otp->isExpired()) {
             return (object) [
                 'status' => false,
-                'message' => 'OTP is expired',
+                'message' => 'Otp is expired',
             ];
         }
 
@@ -166,13 +166,13 @@ class OTPGenerator {
         if ($otp->token == $token) {
             return (object) [
                 'status' => true,
-                'message' => 'OTP is valid',
+                'message' => 'Otp is valid',
             ];
         }
 
         return (object) [
             'status' => false,
-            'message' => 'OTP does not match',
+            'message' => 'Otp does not match',
         ];
     }
 
@@ -183,7 +183,7 @@ class OTPGenerator {
         if (! $otp) {
             return (object) [
                 'status' => false,
-                'message' => 'OTP does not exists, Please generate new OTP',
+                'message' => 'Otp does not exists, Please generate new Otp',
             ];
         }
 

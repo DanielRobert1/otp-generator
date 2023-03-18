@@ -2,9 +2,13 @@
 
 namespace DanielRobert\Otp;
 
+use DanielRobert\Otp\Contracts\ClearableRepository;
+use DanielRobert\Otp\Contracts\OtpRepository;
+use DanielRobert\Otp\Contracts\PrunableRepository;
+use DanielRobert\Otp\Storage\DatabaseOtpsRepository;
 use Illuminate\Support\ServiceProvider;
 
-class OTPGeneratorServiceProvider extends ServiceProvider
+class OtpGeneratorServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -17,35 +21,90 @@ class OTPGeneratorServiceProvider extends ServiceProvider
      
     public function boot()
     {
+        $this->registerCommands();
+        $this->registerPublishing();
+        $this->registerMigrations();
+    }
+
+    /**
+     * Register the package's migrations.
+     *
+     * @return void
+     */
+    private function registerMigrations()
+    {
+        if ($this->app->runningInConsole()) {
+            $this->loadMigrationsFrom(self::DB);
+        }
+    }
+
+    /**
+     * Register the package's publishable resources.
+     *
+     * @return void
+     */
+    private function registerPublishing()
+    {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                self::CONFIG => config_path('otp-generator.php'),
-            ], 'config');
+                self::DB => database_path('migrations'),
+            ], 'otp-migrations');
 
-            $migrationFileName = 'create_otps_table.php';
-            if (! $this->migrationFileExists($migrationFileName)) {
-                $this->publishes([
-                   self::DB."/{$migrationFileName}.stub" => database_path('migrations/' . date('Y_m_d_His', time()) . '_' . $migrationFileName),
-                ], 'migrations');
-            }
+            $this->publishes([
+                self::CONFIG => config_path('otp-generator.php'),
+            ], 'otp-config');
         }
     }
 
+    /**
+     * Register the package's commands.
+     *
+     * @return void
+     */
+    protected function registerCommands()
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                Console\InstallCommand::class,
+                Console\PublishCommand::class,
+            ]);
+        }
+    }
+
+    /**
+     * Register any package services.
+     *
+     * @return void
+     */
     public function register()
     {
-        $this->app->alias(OTPGenerator::class, 'otp-generator');
-        $this->mergeConfigFrom(self::CONFIG, 'otp-generator');
+        $this->mergeConfigFrom(
+            self::CONFIG, 'otp-generator'
+        );
+        $this->app->alias(OtpGenerator::class, 'otp-generator');
     }
 
-    public static function migrationFileExists(string $migrationFileName): bool
+    /**
+     * Register the package database storage driver.
+     *
+     * @return void
+     */
+    protected function registerDatabaseDriver()
     {
-        $len = strlen($migrationFileName);
-        foreach (glob(database_path("migrations/*.php")) as $filename) {
-            if ((substr($filename, -$len) === $migrationFileName)) {
-                return true;
-            }
-        }
+        $this->app->singleton(
+            OtpRepository::class, DatabaseOtpsRepository::class
+        );
 
-        return false;
+        $this->app->singleton(
+            ClearableRepository::class, DatabaseOtpsRepository::class
+        );
+
+        $this->app->singleton(
+            PrunableRepository::class, DatabaseOtpsRepository::class
+        );
+
+        $this->app->when(DatabaseOtpsRepository::class)
+            ->needs('$connection')
+            ->give(config('otp-generator.storage.database.connection'));
     }
 }

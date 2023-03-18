@@ -5,9 +5,9 @@ namespace DanielRobert\Otp;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \DanielRobert\Otp\OTP
+ * @see \DanielRobert\Otp\Otp
  */
-class OTP extends Facade
+class Otp extends Facade
 {
     protected static function getFacadeAccessor()
     {

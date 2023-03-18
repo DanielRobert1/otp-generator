@@ -2,7 +2,7 @@
 
 namespace DanielRobert\Otp\Tests;
 
-use DanielRobert\Otp\OTPGeneratorServiceProvider;
+use DanielRobert\Otp\OtpGeneratorServiceProvider;
 
 class ServiceProviderTest extends TestCase
 {
@@ -10,7 +10,7 @@ class ServiceProviderTest extends TestCase
     {
         static::assertSame(
             $this->app->make('files')
-                ->getRequire(OTPGeneratorServiceProvider::CONFIG),
+                ->getRequire(OtpGeneratorServiceProvider::CONFIG),
             $this->app->make('config')->get('otp-generator')
         );
     }
