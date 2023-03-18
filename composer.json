@@ -1,0 +1,50 @@
+{
+    "name": "danielrobert/otp-generator",
+    "description": "A Laravel Package for Generating and Validating",
+    "keywords": [
+        "danielrobert",
+        "danielrobert",
+        "otp-generator",
+        "otp-sender",
+        "Laravel"
+    ],
+    "homepage": "https://github.com/danielrobert/otp-generator",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniel Robert Aigbe",
+            "email": "danielaigbe92@gmail.com",
+            "homepage": "https://danielrobertaigbe.com",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^8.0",
+        "laravel/framework": "^9.0|^10.0"
+    },
+    "require-dev": {
+        "php-parallel-lint/php-parallel-lint": "^1.3",
+        "orchestra/testbench": "^8.0",
+        "vimeo/psalm": "^5.8",
+        "phpunit/phpunit": "^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "DanielRobert\\Otp\\": "src/",
+            "DanielRobert\\Otp\\Models\\": "src/Models",
+            "DanielRobert\\Otp\\Database\\Factories\\": "database/factories"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DanielRobert\\Otp\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "psalm": "vendor/bin/psalm",
+        "test": "vendor/bin/phpunit --colors=always",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    }
+}
