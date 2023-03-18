@@ -1,6 +1,7 @@
 # OTP Generator and Validator for Laravel Applications
 
 [![Unit Tests](https://github.com/DanielRobert1/otp-generator/actions/workflows/run-tests.yml/badge.svg)](https://github.com/DanielRobert1/otp-generator/actions/workflows/run-tests.yml)
+[![Code Quality](https://scrutinizer-ci.com/g/DanielRobert1/otp-generator/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/DanielRobert1/otp-generator/?branch=master)
 [![CodeFactor](https://www.codefactor.io/repository/github/danielrobert1/otp-generator/badge)](https://www.codefactor.io/repository/github/danielrobert1/otp-generator)
 
 ## Installation
