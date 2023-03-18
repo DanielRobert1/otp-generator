@@ -1,7 +1,6 @@
 # OTP Generator and Validator for Laravel Applications
 
 [![Unit Tests](https://github.com/DanielRobert1/otp-generator/actions/workflows/run-tests.yml/badge.svg)](https://github.com/DanielRobert1/otp-generator/actions/workflows/run-tests.yml)
-
 [![CodeFactor](https://www.codefactor.io/repository/github/danielrobert1/otp-generator/badge)](https://www.codefactor.io/repository/github/danielrobert1/otp-generator)
 
 ## Installation
@@ -28,12 +27,12 @@ php artisan vendor:publish --provider="DanielRobert\Otp\OtpServiceProvider" --ta
 ## Usage
 
 ```php
-use DanielRobert\Otp\Otp;
+use DanielRobert\Otp\OTP;
 .
 .
-$otp =  Otp::generate($identifier);
+$otp =  OTP::generate($identifier);
 .
-$verify = Otp::validate($identifier, $otp->token);
+$verify = OTP::validate($identifier, $otp->token);
 // example response
 {
   "status": true
@@ -62,14 +61,14 @@ You have control to update the setting at otp-generator.php config file but you 
 use DanielRobert\Otp\Otp;
 .
 .
-$otp =  Otp::setValidity(30)  // otp validity time in mins
+$otp =  OTP::setValidity(30)  // otp validity time in mins
       ->setLength(4)  // Lenght of the generated otp
       ->setMaximumOtpsAllowed(10) // Number of times allowed to regenerate otps
       ->setOnlyDigits(false)  // generated otp contains mixed characters ex:ad2312
       ->setUseSameToken(true) // if you re-generate OTP, you will get same token
       ->generate($identifier);
 .
-$verify = Otp::setAllowedAttempts(10) // number of times they can allow to attempt with wrong token
+$verify = OTP::setAllowedAttempts(10) // number of times they can allow to attempt with wrong token
     ->validate($identifier, $otp->token);
 
 ```
