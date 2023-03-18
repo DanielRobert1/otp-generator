@@ -1,8 +1,11 @@
 # OTP Generator and Validator for Laravel Applications
 
-[![Code Quality](https://scrutinizer-ci.com/g/DanielRobert1/otp-generator/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/DanielRobert1/otp-generator/?branch=master)
-[![CodeFactor](https://www.codefactor.io/repository/github/danielrobert1/otp-generator/badge)](https://www.codefactor.io/repository/github/danielrobert1/otp-generator)
-[![Unit Tests](https://github.com/DanielRobert1/otp-generator/actions/workflows/run-tests.yml/badge.svg)](https://github.com/DanielRobert1/otp-generator/actions/workflows/run-tests.yml)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/danielrobert1/otp-generator?style=flat-square)](https://packagist.org/packages/danielrobert1/otp-generator)
+[![Quality Score](https://img.shields.io/scrutinizer/quality/g/danielrobert1/otp-generator/master?style=flat-square)](https://scrutinizer-ci.com/g/danielrobert1/otp-generator/)
+[![Code Quality](https://img.shields.io/codefactor/grade/github/danielrobert1/otp-generator?style=flat-square)](https://www.codefactor.io/repository/github/danielrobert1/otp-generator)
+[![Github Workflow Status](https://img.shields.io/github/actions/workflow/status/danielrobert1/otp-generator/run-tests.yml?branch=master&style=flat-square)](https://github.com/danielrobert1/otp-generator/actions/workflows/run-tests.yml)
+[![Total Downloads](https://img.shields.io/packagist/dt/danielrobert/otp-generator?style=flat-square)](https://packagist.org/packages/danielrobert/otp-generator)
+[![Licence](https://img.shields.io/packagist/l/danielrobert/otp-generator?style=flat-square)](https://packagist.org/packages/danielrobert/otp-generator)
 
 ## Installation
 
