@@ -4,7 +4,7 @@
 [![Quality Score](https://img.shields.io/scrutinizer/quality/g/danielrobert1/otp-generator/master?style=for-the-badge)](https://scrutinizer-ci.com/g/danielrobert1/otp-generator/)
 [![Code Quality](https://img.shields.io/codefactor/grade/github/danielrobert1/otp-generator?style=for-the-badge)](https://www.codefactor.io/repository/github/danielrobert1/otp-generator)
 [![Github Workflow Status](https://img.shields.io/github/actions/workflow/status/danielrobert1/otp-generator/run-tests.yml?branch=master&style=for-the-badge)](https://github.com/danielrobert1/otp-generator/actions/workflows/run-tests.yml)
-[![Total Downloads](https://img.shields.io/packagist/dt/danielrobert/otp-generator?style=for-the-badge)](https://packagist.org/packages/danielrobert/otp-generator)
+<!-- [![Total Downloads](https://img.shields.io/packagist/dt/danielrobert/otp-generator?style=for-the-badge)](https://packagist.org/packages/danielrobert/otp-generator) -->
 [![Licence](https://img.shields.io/packagist/l/danielrobert/otp-generator?style=for-the-badge)](https://packagist.org/packages/danielrobert/otp-generator)
 
 
