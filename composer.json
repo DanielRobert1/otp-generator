@@ -1,6 +1,6 @@
 {
     "name": "danielrobert/otp-generator",
-    "description": "A Laravel Package for Generating and Validating",
+    "description": "A Laravel Package for Generating and Validating Otp using database",
     "keywords": [
         "danielrobert",
         "danielrobert",
