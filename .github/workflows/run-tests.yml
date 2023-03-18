@@ -1,4 +1,4 @@
-name: OTP Generator Tests
+name: Unit Tests
 
 on:
   push:
