@@ -40,7 +40,7 @@ $verify = OTP::validate($identifier, $otp->token);
 }
 
 // to get an expiredAt time
-$expires = Otp::expiredAt($identifier);
+$expires = OTP::expiredAt($identifier);
 
 // example response 
 {
@@ -58,7 +58,7 @@ You have control to update the setting at otp-generator.php config file but you 
 ## Advance Usage
 
 ```php
-use DanielRobert\Otp\Otp;
+use DanielRobert\Otp\OTP;
 .
 .
 $otp =  OTP::setValidity(30)  // otp validity time in mins
