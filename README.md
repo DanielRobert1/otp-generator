@@ -1,6 +1,6 @@
 # OTP Generator and Validator for Laravel Applications
 
-![GitHub Tests Action Status](https://github.com/danielrober1/otp-generator/workflows/Tests/badge.svg)
+[![Unit Tests](https://github.com/DanielRobert1/otp-generator/actions/workflows/run-tests.yml/badge.svg)](https://github.com/DanielRobert1/otp-generator/actions/workflows/run-tests.yml)
 
 ## Installation
 
