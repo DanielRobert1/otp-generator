@@ -12,7 +12,7 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'otp-generator:install';
+    protected $signature = 'otp:install';
 
     /**
      * The console command description.

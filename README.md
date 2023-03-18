@@ -11,23 +11,39 @@
 
 ## Installation
 
-You can install the package via composer:
+You may use the Composer package manager to install Otp Generator into your Laravel project:
 
 ```bash
 composer require danielrobert/otp-generator
 ```
 
-You can publish and run the migrations with:
+After installing the otp-generator, publish its configs using the otp:install Artisan command. After installing Otp Generator, you should also run the migrate command in order to create the tables needed to store OTPs:
 
 ```bash
-php artisan vendor:publish --provider="DanielRobert\Otp\OtpServiceProvider" --tag="migrations"
+php artisan otp:install
+ 
 php artisan migrate
 ```
 
-You can publish the config file with:
 
-```bash
-php artisan vendor:publish --provider="DanielRobert\Otp\OtpServiceProvider" --tag="config"
+## Configuration
+
+After publishing Otp Generator's configs, its primary configuration file will be located at config/otp-generator.php. This configuration file allows you to configure your otps. Each configuration option includes a description of its purpose, so be sure to thoroughly explore this file.
+
+
+## Data Pruning
+
+Data Pruning
+Without pruning, the otps table can accumulate records very quickly. To mitigate this, you can schedule the otp:prune Artisan command to run daily:
+
+```php
+$schedule->command('otp:prune')->daily();
+```
+
+By default, all expired entries or entries older than 30 minutes as configured in the config/otp-generator.php will be pruned. You may use the minutes option when calling the command to determine how long to retain data. For example, the following command will delete all records created over 60 minutes ago:
+
+```php
+$schedule->command('otp:prune --minutes=60')->daily();
 ```
 
 ## Usage
@@ -39,6 +55,7 @@ use DanielRobert\Otp\Otp;
 $otp =  Otp::generate($identifier);
 .
 $verify = Otp::validate($identifier, $otp->token);
+
 // example response
 {
   "status": true
@@ -49,7 +66,6 @@ $verify = Otp::validate($identifier, $otp->token);
 $expires = Otp::expiredAt($identifier);
 
 // example response 
-{
 +"status": true
 +"expired_at": Illuminate\Support\Carbon @1611895244^ {
   ....
@@ -59,9 +75,9 @@ $expires = Otp::expiredAt($identifier);
 
 ```
 
-You have control to update the setting at otp-generator.php config file but you control while generating also
-
 ## Advance Usage
+
+In addition to configuring otps from the otp-generator.php config file you can also configure it directly
 
 ```php
 use DanielRobert\Otp\Otp;
@@ -99,7 +115,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
--   [DanielRobert](https://github.com/danielrobert1)
+-   [Aigbe Daniel Robert](https://github.com/danielrobert1)
 -   [All Contributors](../../contributors)
 
 ## License
