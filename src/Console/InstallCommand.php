@@ -28,7 +28,7 @@ class InstallCommand extends Command
     public function handle()
     {
         $this->comment('Publishing Otp Migrations...');
-        $this->callSilent('vendor:publish', ['--tag' => 'otp-migration']);
+        $this->callSilent('vendor:publish', ['--tag' => 'otp-migrations']);
 
         $this->comment('Publishing Otp Generator Configuration...');
         $this->callSilent('vendor:publish', ['--tag' => 'otp-config']);
