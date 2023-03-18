@@ -28,8 +28,8 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        $this->comment('Publishing Otp Generator Service Provider...');
-        $this->callSilent('vendor:publish', ['--tag' => 'otp-provider']);
+        $this->comment('Publishing Otp Migrations...');
+        $this->callSilent('vendor:publish', ['--tag' => 'otp-migration']);
 
         $this->comment('Publishing Otp Generator Configuration...');
         $this->callSilent('vendor:publish', ['--tag' => 'otp-config']);
