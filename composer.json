@@ -6,7 +6,7 @@
         "danielrobert",
         "otp-generator",
         "otp-sender",
-        "Laravel"
+        "laravel"
     ],
     "homepage": "https://github.com/danielrobert/otp-generator",
     "license": "MIT",
@@ -25,10 +25,10 @@
         "laravel/framework": "^9.0|^10.0"
     },
     "require-dev": {
-        "php-parallel-lint/php-parallel-lint": "^1.3",
-        "orchestra/testbench": "^8.0",
+        "php-parallel-lint/php-parallel-lint": "dev-develop",
+        "orchestra/testbench": "^7.0|^8.0",
         "vimeo/psalm": "^5.8",
-        "phpunit/phpunit": "^10.0"
+        "phpunit/phpunit": "^9.0|^10.0"
     },
     "autoload": {
         "psr-4": {
