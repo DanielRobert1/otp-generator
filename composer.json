@@ -18,7 +18,7 @@
             "role": "Developer"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
         "php": "^8.0",
@@ -56,5 +56,8 @@
                 "Otp": "DanielRobert\\Otp\\Otp"
             }
         }
+    },
+    "config": {
+        "sort-packages": true
     }
 }
