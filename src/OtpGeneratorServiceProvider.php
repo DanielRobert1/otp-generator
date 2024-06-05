@@ -23,19 +23,6 @@ class OtpGeneratorServiceProvider extends ServiceProvider
     {
         $this->registerCommands();
         $this->registerPublishing();
-        $this->registerMigrations();
-    }
-
-    /**
-     * Register the package's migrations.
-     *
-     * @return void
-     */
-    private function registerMigrations()
-    {
-        if ($this->app->runningInConsole()) {
-            $this->loadMigrationsFrom(self::DB);
-        }
     }
 
     /**
