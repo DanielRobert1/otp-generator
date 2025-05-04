@@ -31,5 +31,10 @@ class PublishCommand extends Command
             '--tag' => 'otp-config',
             '--force' => $this->option('force'),
         ]);
+
+        $this->call('vendor:publish', [
+            '--tag' => 'otp-migrations',
+            '--force' => $this->option('force'),
+        ]);
     }
 }

@@ -193,7 +193,7 @@ class OtpGenerator {
         ];
     }
 
-    private function deleteOldOtps()
+    private function deleteOldOtps(): void
     {
         OtpModel::where('expired', true)
             ->orWhere('created_at', '<', Carbon::now()->subMinutes($this->deleteOldOtps))

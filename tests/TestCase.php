@@ -18,6 +18,7 @@ abstract class TestCase extends BaseTestCase
         Factory::guessFactoryNamesUsing(
             fn (string $modelName) => 'DanielRobert\\Otp\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }
 
     protected function getPackageProviders($app): array

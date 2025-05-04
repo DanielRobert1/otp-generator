@@ -3,11 +3,8 @@ namespace DanielRobert\Otp\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-
 class OtpModel extends Model
 {
-    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -15,7 +12,7 @@ class OtpModel extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'identifier', 
+        'identifier',
         'token',
         'validity',
         'expired',
@@ -51,7 +48,7 @@ class OtpModel extends Model
         }
 
         $generatedTime = $this->generated_at->addMinutes($this->validity);
-       
+
         if (strtotime($generatedTime) >= strtotime(Carbon::now()->toDateTimeString())) {
             return false;
         }

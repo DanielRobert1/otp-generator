@@ -17,11 +17,11 @@ You may use the Composer package manager to install Otp Generator into your Lara
 composer require danielrobert/otp-generator
 ```
 
-After installing the otp-generator, publish its configs using the otp:install Artisan command. After installing Otp Generator, you should also run the migrate command in order to create the tables needed to store OTPs:
+After installing the otp-generator, you need to publish its configuration and migration files. The migration files will be copied to your application's database/migrations directory, but they are not run automatically. You must run the migrate command yourself to create the necessary tables:
 
 ```bash
-php artisan otp:install
- 
+php artisan vendor:publish --provider="DanielRobert\Otp\OtpGeneratorServiceProvider" --tag=otp-migrations
+php artisan vendor:publish --provider="DanielRobert\Otp\OtpGeneratorServiceProvider" --tag=otp-config
 php artisan migrate
 ```
 

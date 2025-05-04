@@ -3,7 +3,6 @@
 namespace DanielRobert\Otp;
 
 use DanielRobert\Otp\Contracts\ClearableRepository;
-use DanielRobert\Otp\Contracts\OtpRepository;
 use DanielRobert\Otp\Contracts\PrunableRepository;
 use DanielRobert\Otp\Storage\DatabaseOtpsRepository;
 use Illuminate\Support\ServiceProvider;
@@ -18,8 +17,8 @@ class OtpGeneratorServiceProvider extends ServiceProvider
 
      public const DB = __DIR__.'/../database/migrations';
      public const CONFIG = __DIR__.'/../config/otp-generator.php';
-     
-    public function boot()
+
+    public function boot(): void
     {
         $this->registerCommands();
         $this->registerPublishing();
@@ -52,7 +51,6 @@ class OtpGeneratorServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                Console\InstallCommand::class,
                 Console\PublishCommand::class,
             ]);
         }
@@ -78,10 +76,6 @@ class OtpGeneratorServiceProvider extends ServiceProvider
      */
     protected function registerDatabaseDriver()
     {
-        $this->app->singleton(
-            OtpRepository::class, DatabaseOtpsRepository::class
-        );
-
         $this->app->singleton(
             ClearableRepository::class, DatabaseOtpsRepository::class
         );

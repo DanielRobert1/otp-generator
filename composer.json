@@ -22,11 +22,11 @@
     "prefer-stable": true,
     "require": {
         "php": "^8.0",
-        "laravel/framework": "^9.0|^10.0|^11.0"
+        "laravel/framework": "^9.0|^10.0|^11.0|^12.0"
     },
     "require-dev": {
         "php-parallel-lint/php-parallel-lint": "dev-develop",
-        "orchestra/testbench": "^7.0|^8.0",
+        "orchestra/testbench": "^7.0|^8.0|^9.0",
         "vimeo/psalm": "^5.8",
         "phpunit/phpunit": "^9.0|^10.0|^11.0"
     },

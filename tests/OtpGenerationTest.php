@@ -139,6 +139,7 @@ class OtpGenerationTest extends TestCase
         $identifier = Str::random(12);
         Otp::generate($identifier);
         $expires = Otp::expiredAt($identifier);
-        $this->assertEquals(9, $expires->expired_at->diffInMinutes());
+        $minutes = now()->diffInMinutes($expires->expired_at);
+        $this->assertTrue($minutes >= 9 && $minutes < 10, 'Expected minutes to expiry to be between 9 and 10, got: ' . $minutes);
     }
 }
